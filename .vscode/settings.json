@@ -1,5 +1,6 @@
 {
-    "editor.fontFamily": "JetBrains Mono",
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "biomejs.biome"
+  "editor.fontFamily": "JetBrains Mono",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "biomejs.biome",
+  "explorer.compactFolders": false
 }
