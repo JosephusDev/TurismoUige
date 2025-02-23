@@ -18,8 +18,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='pt'>
-      <body className={`${montserratSans.variable} antialiased`}>
+    <html lang='pt' className={`${montserratSans.variable}`}>
+      <body className='font-[family-name:var(--font-geist-sans)]'>
         {children}
       </body>
     </html>
