@@ -1,6 +1,14 @@
+'use client'
+import { supabase } from '@/utils/supabase'
 import Image from 'next/image'
 
 export default function Home() {
+  const teste = async () => {
+    const { data, error } = await supabase.auth.signUp({
+      password: '123465',
+      email: 'filomenoolivetree@gmail.com',
+    })
+  }
   return (
     <div className='grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20'>
       <main className='flex flex-col gap-8 row-start-2 items-center sm:items-start'>
@@ -18,7 +26,6 @@ export default function Home() {
             <span className='bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded text-primary'>
               Get started by editing
             </span>
-            .
           </li>
           <li>Save and see your changes instantly.</li>
         </ol>
