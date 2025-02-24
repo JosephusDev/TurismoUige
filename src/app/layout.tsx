@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import './globals.css'
+import QueryProvider from './queryProvider'
 
 const montserratSans = Montserrat({
   variable: '--font-geist-sans',
@@ -20,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang='pt' className={`${montserratSans.variable}`}>
       <body className='font-[family-name:var(--font-geist-sans)]'>
-        {children}
+        <QueryProvider>{children}</QueryProvider>
       </body>
     </html>
   )
