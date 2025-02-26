@@ -9,6 +9,33 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      event: {
+        Row: {
+          address: string
+          created_at: string
+          date: string
+          description: string
+          id: string
+          title: string
+        }
+        Insert: {
+          address: string
+          created_at?: string
+          date: string
+          description: string
+          id?: string
+          title: string
+        }
+        Update: {
+          address?: string
+          created_at?: string
+          date?: string
+          description?: string
+          id?: string
+          title?: string
+        }
+        Relationships: []
+      }
       location: {
         Row: {
           address: string | null
@@ -72,16 +99,77 @@ export type Database = {
             referencedRelation: "location"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "rate_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
         ]
+      }
+      users: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          email: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_name: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_name?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_name?: string | null
+        }
+        Relationships: []
       }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_locates_by_greatest_rate: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          id: string
+          name: string
+          description: string
+          category: Database["public"]["Enums"]["category"]
+          address: string
+          image_url: string
+          created_at: string
+          average_rating: number
+        }[]
+      }
+      get_locates_by_rates: {
+        Args: {
+          rate_arg: number
+        }
+        Returns: {
+          id: string
+          name: string
+          description: string
+          category: Database["public"]["Enums"]["category"]
+          address: string
+          image_url: string
+          created_at: string
+        }[]
+      }
     }
     Enums: {
+      app_role: "user" | "admin"
       category: "restaurante" | "hotel" | "banco" | "natureza" | "loja"
     }
     CompositeTypes: {

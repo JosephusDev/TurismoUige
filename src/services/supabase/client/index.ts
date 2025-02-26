@@ -1,9 +1,9 @@
-'use client'
-import { Database } from '@/services/supabase/types/db'
-import { createClient } from '@supabase/supabase-js'
+import { createBrowserClient } from '@supabase/ssr'
+import { Database } from '../types/db'
 
-const supabaseKey =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJia3pkeGNjcXhhc3FhcXJsaHVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDAyNDMyNTUsImV4cCI6MjA1NTgxOTI1NX0.v1LJE2PDw7f32BjZY_TpmvwGR_dE8ZhYKwrpp1bdDko'
-const supabaseUrl = 'https://rbkzdxccqxasqaqrlhum.supabase.co'
-
-export const supabase = createClient<Database>(supabaseUrl, supabaseKey)
+export function createClient() {
+  return createBrowserClient<Database>(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  )
+}
