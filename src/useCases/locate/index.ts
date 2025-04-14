@@ -1,12 +1,17 @@
-import { useCreateLocates } from './useCreateLocate'
-import { useRemoveLocates } from './useRemoveLocate'
-import { useFetchLocates, useFetchFilteredLocates } from './useFetchLocates'
-import { useUpdateLocates } from './useUpdateLocate'
+import { useCreateLocate } from './createLocate'
+import { useDeleteLocate } from './deleteLocate'
+import {
+  fetchFilteredLocates,
+  fetchLocates,
+  fetchLocatesByGreatestAvgRate,
+} from './fetchLocates'
+import { useUpdateLocate } from './updateLocate'
 
 export {
-  useCreateLocates,
-  useRemoveLocates,
-  useFetchFilteredLocates,
-  useFetchLocates,
-  useUpdateLocates,
+  useCreateLocate,
+  useDeleteLocate,
+  fetchFilteredLocates,
+  fetchLocates,
+  fetchLocatesByGreatestAvgRate,
+  useUpdateLocate,
 }

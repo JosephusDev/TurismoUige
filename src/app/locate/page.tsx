@@ -1,8 +1,9 @@
 'use client'
-import { useFetchLocatesByGreatestAvgRate } from '@/useCases/locate/useFetchLocates'
+
+import { fetchLocatesByGreatestAvgRate } from '@/useCases/locate/fetchLocates'
 
 export default function Locates() {
-  const { data: locates, isLoading, error } = useFetchLocatesByGreatestAvgRate()
+  const { data: locates, isLoading, error } = fetchLocatesByGreatestAvgRate()
 
   if (isLoading) return <p>Carregando...</p>
 

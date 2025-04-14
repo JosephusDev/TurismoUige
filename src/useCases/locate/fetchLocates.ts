@@ -2,8 +2,9 @@ import { createClient } from '@/services/supabase/client'
 import { FilterEnum } from '@/services/supabase/types'
 import { useQuery } from '@tanstack/react-query'
 
-export function useFetchLocates() {
-  const supabase = createClient()
+const supabase = createClient()
+
+export function fetchLocates() {
   const { data, isLoading, error } = useQuery({
     queryKey: ['locate'],
     queryFn: async () => {
@@ -21,8 +22,7 @@ export function useFetchLocates() {
   }
 }
 
-export function useFetchFilteredLocates(filter: FilterEnum, value: string) {
-  const supabase = createClient()
+export function fetchFilteredLocates(filter: FilterEnum, value: string) {
   const { data, isLoading, error } = useQuery({
     queryKey: ['filteredLocates'],
     queryFn: async () => {
@@ -48,8 +48,7 @@ export function useFetchFilteredLocates(filter: FilterEnum, value: string) {
   }
 }
 
-export function useFetchLocatesByGreatestAvgRate() {
-  const supabase = createClient()
+export function fetchLocatesByGreatestAvgRate() {
   const { data, isLoading, error } = useQuery({
     queryKey: ['locateByGreatestAvgRate'],
     queryFn: async () => {

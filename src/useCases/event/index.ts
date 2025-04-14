@@ -1,13 +1,6 @@
-import { useFetchEvents } from '@/useCases/event/useFetchEvents'
-import { useCreateEvents } from '@/useCases/event/useCreateEvent'
-import { useUpdateEvents } from '@/useCases/event/useUpdateEvent'
-import { useRemoveEvents } from '@/useCases/event/useRemoveEvent'
+import { useFetchEvents } from '@/useCases/event/fetchEvents'
+import { useCreateEvent } from '@/useCases/event/createEvent'
+import { useUpdateEvent } from '@/useCases/event/updateEvent'
+import { useDeleteEvent } from '@/useCases/event/deleteEvent'
 
-
-
-export {
-    useFetchEvents,
-    useCreateEvents,
-    useUpdateEvents,
-    useRemoveEvents
-}
+export { useFetchEvents, useCreateEvent, useUpdateEvent, useDeleteEvent }
