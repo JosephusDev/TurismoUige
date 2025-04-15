@@ -14,7 +14,7 @@ export function useCreateLocate() {
     mutationKey: ['createLocate'],
     mutationFn: async (locate: Partial<LocateType>) => {
       const { data, error } = await supabase
-        .from('location')
+        .from('locate')
         .insert(locate)
         .select()
         .single()

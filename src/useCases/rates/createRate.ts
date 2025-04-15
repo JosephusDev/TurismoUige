@@ -1,21 +1,21 @@
 import { createClient } from '@/services/supabase/client'
+import { RateType } from '@/services/supabase/types'
 import { useMutation } from '@tanstack/react-query'
 
-export function useDeleteLocate() {
+export function useCreateRate() {
   const supabase = createClient()
 
   const {
-    mutateAsync: deleteLocate,
+    mutateAsync: createRate,
     isPending,
     error,
     data,
   } = useMutation({
-    mutationKey: ['removeLocate'],
-    mutationFn: async (id: string) => {
+    mutationKey: ['createRate'],
+    mutationFn: async (rate: Omit<RateType, 'id' | 'created_at'>) => {
       const { data, error } = await supabase
-        .from('locate')
-        .delete()
-        .eq('id', id)
+        .from('rate')
+        .insert(rate)
         .select()
         .single()
 
@@ -28,7 +28,7 @@ export function useDeleteLocate() {
   })
 
   return {
-    deleteLocate,
+    createRate,
     isPending,
     error,
     data,

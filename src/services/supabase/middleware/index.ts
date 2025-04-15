@@ -38,13 +38,13 @@ export async function updateSession(request: NextRequest) {
   const {
     data: { user },
   } = await supabase.auth.getUser()
-  if (!user && request.nextUrl.pathname === '/private') {
+  if (!user && request.nextUrl.pathname === '/admin') {
     // no user, potentially respond by redirecting the user to the login page
     const url = new URL('/', request.url)
     return NextResponse.redirect(url)
   }
   if (user && request.nextUrl.pathname === '/login') {
-    const url = new URL('/private', request.url)
+    const url = new URL('/admin', request.url)
     return NextResponse.redirect(url)
   }
 

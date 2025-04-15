@@ -9,7 +9,7 @@ export function fetchLocates() {
     queryKey: ['locate'],
     queryFn: async () => {
       const { data, error } = await supabase
-        .from('location')
+        .from('locate')
         .select('*')
         .order('name')
       return { data, error }
@@ -28,7 +28,7 @@ export function fetchFilteredLocates(filter: FilterEnum, value: string) {
     queryFn: async () => {
       if (filter === 'category' || filter === 'address') {
         const { data, error } = await supabase
-          .from('location')
+          .from('locate')
           .select('*')
           .like(filter, `%${value}%`)
           .order('name')

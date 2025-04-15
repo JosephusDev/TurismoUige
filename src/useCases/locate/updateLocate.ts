@@ -19,7 +19,7 @@ export function useUpdateLocate() {
     mutationKey: ['updateLocate'],
     mutationFn: async ({ id, locate }: UpdateLocateProps) => {
       const { data, error } = await supabase
-        .from('location')
+        .from('locate')
         .update(locate)
         .eq('id', id)
         .select()
