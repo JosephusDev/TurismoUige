@@ -14,3 +14,16 @@ export const authSchema = z.object({
 })
 
 export type AuthSchema = z.infer<typeof authSchema>
+
+export const formSchema = z.object({
+  name: z.string().min(1, 'O nome é obrigatório'),
+  description: z.string().min(1, 'A descrição é obrigatória'),
+  category: z
+    .enum(['restaurante', 'hotel', 'banco', 'natureza', 'loja'], {
+      required_error: 'Por favor, selecione uma categoria',
+    })
+    .optional(),
+  address: z.string().min(1, 'O endereço é obrigatório'),
+})
+
+export type FormSchema = z.infer<typeof formSchema>

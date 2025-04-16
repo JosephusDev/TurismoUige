@@ -10,6 +10,7 @@ export function useCreateLocate() {
     isPending,
     error,
     data,
+    isSuccess,
   } = useMutation({
     mutationKey: ['createLocate'],
     mutationFn: async (locate: Partial<LocateType>) => {
@@ -32,5 +33,6 @@ export function useCreateLocate() {
     isPending,
     error,
     data,
+    isSuccess,
   }
 }

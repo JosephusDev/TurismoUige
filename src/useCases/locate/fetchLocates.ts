@@ -6,7 +6,7 @@ const supabase = createClient()
 
 export function fetchLocates() {
   const { data, isLoading, error } = useQuery({
-    queryKey: ['locate'],
+    queryKey: ['locates'],
     queryFn: async () => {
       const { data, error } = await supabase
         .from('locate')

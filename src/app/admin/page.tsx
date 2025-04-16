@@ -1,5 +1,6 @@
 import { createClient } from '@/services/supabase/server'
 import { redirect } from 'next/navigation'
+import TableLocates from '@/components/Table/Locates'
 export default async function Page() {
   const supabase = await createClient()
 
@@ -22,6 +23,9 @@ export default async function Page() {
         >
           Sair
         </button>
+        <div className='m-8 sm:m-16 flex justify-center items-center'>
+          <TableLocates />
+        </div>
       </form>
     </div>
   )

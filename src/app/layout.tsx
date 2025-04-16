@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Montserrat, Poppins } from 'next/font/google'
 import './globals.css'
 import QueryProvider from './queryProvider'
-
+import { Toaster } from 'sonner'
 const poppinsSans = Poppins({
   variable: '--font-poppins',
   subsets: ['latin'],
@@ -22,7 +22,10 @@ export default function RootLayout({
   return (
     <html lang='pt' className={`${poppinsSans.variable}`}>
       <body className='font-[family-name:var(--font-poppins)]'>
-        <QueryProvider>{children}</QueryProvider>
+        <QueryProvider>
+          {children}
+          <Toaster />
+        </QueryProvider>
       </body>
     </html>
   )

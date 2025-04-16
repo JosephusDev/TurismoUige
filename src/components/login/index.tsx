@@ -11,7 +11,7 @@ export function LoginPage() {
         email: 'condepinto2@gmail.com',
         password: 'adminadmin',
       })
-      router.push('/private')
+      router.push('/admin')
     } catch (error) {
       console.error('Erro ao fazer login:', error)
     }
@@ -23,7 +23,7 @@ export function LoginPage() {
         email: 'condepinto2@gmail.com',
         password: 'adminadmin',
       })
-      router.push('/private')
+      router.push('/admin')
     } catch (error) {
       console.error('Erro ao fazer cadastro:', error)
     }

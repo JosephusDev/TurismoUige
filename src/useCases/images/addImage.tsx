@@ -1,22 +1,24 @@
 import { createClient } from '@/services/supabase/client'
+import { ImageType } from '@/services/supabase/types'
 import { useMutation } from '@tanstack/react-query'
 
-export function useDeleteLocate() {
+export function useAddImage() {
   const supabase = createClient()
 
   const {
-    mutateAsync: deleteLocate,
+    mutateAsync: createImage,
     isPending,
     error,
     data,
     isSuccess,
   } = useMutation({
-    mutationKey: ['removeLocate'],
-    mutationFn: async (id: string) => {
+    mutationKey: ['addImage'],
+    mutationFn: async (image: Pick<ImageType, 'url' | 'locate_id'>) => {
       const { data, error } = await supabase
-        .from('locate')
-        .delete()
-        .eq('id', id)
+        .from('images')
+        .insert(image)
+        .select()
+        .single()
 
       if (error) {
         throw new Error(error.message)
@@ -27,7 +29,7 @@ export function useDeleteLocate() {
   })
 
   return {
-    deleteLocate,
+    createImage,
     isPending,
     error,
     data,
