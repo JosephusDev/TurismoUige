@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
-import { Montserrat } from 'next/font/google'
+import { Montserrat, Poppins } from 'next/font/google'
 import './globals.css'
 import QueryProvider from './queryProvider'
 
-const montserratSans = Montserrat({
-  variable: '--font-geist-sans',
+const poppinsSans = Poppins({
+  variable: '--font-poppins',
   subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
 })
 
 export const metadata: Metadata = {
@@ -19,8 +20,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='pt' className={`${montserratSans.variable}`}>
-      <body className='font-[family-name:var(--font-geist-sans)]'>
+    <html lang='pt' className={`${poppinsSans.variable}`}>
+      <body className='font-[family-name:var(--font-poppins)]'>
         <QueryProvider>{children}</QueryProvider>
       </body>
     </html>
