@@ -27,3 +27,18 @@ export const formSchema = z.object({
 })
 
 export type FormSchema = z.infer<typeof formSchema>
+
+export const userSchema = z.object({
+  email: z
+    .string({
+      message: 'E-mail é obrigatório',
+    })
+    .email('E-mail inválido'),
+  password: z
+    .string({
+      message: 'Senha é obrigatória',
+    })
+    .min(6, 'A senha deve ter pelo menos 6 caracteres'),
+})
+
+export type UserSchema = z.infer<typeof userSchema>
