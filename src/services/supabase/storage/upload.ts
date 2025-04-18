@@ -126,10 +126,10 @@ const useSupabaseUpload = (options: UseSupabaseUploadOptions) => {
         : files
 
     const responses = await Promise.all(
-      filesToUpload.map(async file => {
+      filesToUpload.map(async (file, index) => {
         const timestamp = new Date().getTime()
         const fileExtension = file.name.split('.').pop()
-        const newFileName = `${timestamp}.${fileExtension}`
+        const newFileName = `${timestamp}-${index}.${fileExtension}`
 
         const { error } = await supabase.storage
           .from(bucketName)

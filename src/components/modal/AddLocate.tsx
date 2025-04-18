@@ -72,6 +72,7 @@ export default function AddLocate() {
       }
       form.reset()
       toast.success('Imagens adicionadas com sucesso')
+      queryClient.invalidateQueries({ queryKey: ['images', locateId] })
       setLocateId(null)
     } catch (error) {
       console.error('Erro ao adicionar imagens:', error)
