@@ -1,11 +1,6 @@
 import { createClient } from '@/services/supabase/client'
-import { UserType } from '@/services/supabase/types'
+import { UserSchema } from '@/services/supabase/types/schema'
 import { useMutation } from '@tanstack/react-query'
-
-type UpdateUserProps = {
-  id: string
-  user: Partial<UserType>
-}
 
 export function useUpdateUser() {
   const supabase = createClient()
@@ -17,13 +12,8 @@ export function useUpdateUser() {
     data,
   } = useMutation({
     mutationKey: ['updateUser'],
-    mutationFn: async ({ id, user }: UpdateUserProps) => {
-      const { data, error } = await supabase
-        .from('users')
-        .update(user)
-        .eq('id', id)
-        .select()
-        .single()
+    mutationFn: async ({ user }: { user: UserSchema }) => {
+      const { data, error } = await supabase.auth.updateUser(user)
 
       if (error) {
         throw new Error(error.message)
