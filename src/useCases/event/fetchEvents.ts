@@ -1,8 +1,6 @@
 import { createClient } from '@/services/supabase/client'
 import { useQuery } from '@tanstack/react-query'
 
-
-
 export function useFetchEvents() {
   const supabase = createClient()
   const { data, isLoading, error } = useQuery({
