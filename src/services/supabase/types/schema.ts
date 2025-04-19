@@ -28,6 +28,23 @@ export const formSchema = z.object({
 
 export type FormSchema = z.infer<typeof formSchema>
 
+export const userSchema = z.object({
+  email: z
+    .string({
+      message: 'E-mail é obrigatório',
+    })
+    .email('E-mail inválido'),
+  username: z.string().min(1, 'O nome de usuário é obrigatório'),
+  role: z.enum(['admin', 'user'], {
+    required_error: 'O nivel de acesso é obrigatório',
+  }),
+  password: z
+    .string()
+    .min(6, 'A senha deve ter pelo menos 6 caracteres')
+    .optional(),
+})
+
+export type UserSchema = z.infer<typeof userSchema>
 export const eventSchema = z.object({
   title: z.string().min(1, 'O título é obrigatório'),
   date: z.string().min(1, 'A data é obrigatória'),
