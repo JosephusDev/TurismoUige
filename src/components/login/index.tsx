@@ -38,7 +38,7 @@ export function LoginForm({
         router.refresh()
       }
     } catch (error) {
-      toast.error('Erro ao fazer login')
+      toast.error('Erro ao fazer o login')
     }
   }
 

@@ -34,11 +34,14 @@ export const userSchema = z.object({
       message: 'E-mail é obrigatório',
     })
     .email('E-mail inválido'),
+  username: z.string().min(1, 'O nome de usuário é obrigatório'),
+  role: z.enum(['admin', 'user'], {
+    required_error: 'O nivel de acesso é obrigatório',
+  }),
   password: z
-    .string({
-      message: 'Senha é obrigatória',
-    })
-    .min(6, 'A senha deve ter pelo menos 6 caracteres'),
+    .string()
+    .min(6, 'A senha deve ter pelo menos 6 caracteres')
+    .optional(),
 })
 
 export type UserSchema = z.infer<typeof userSchema>

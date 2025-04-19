@@ -11,26 +11,55 @@ import { Loader2 } from 'lucide-react'
 import { LabelError } from '../ui/label-error'
 import { useUpdateUser } from '@/useCases/user/updateUser'
 import { UserSchema, userSchema } from '@/services/supabase/types/schema'
+import {
+  Select,
+  SelectContent,
+  SelectValue,
+  SelectTrigger,
+  SelectItem,
+} from '@radix-ui/react-select'
 
-export function ProfileForm({ user }: { user: UserSchema }) {
+export function ProfileForm({
+  userId,
+  userData,
+}: {
+  userId: string
+  userData: UserSchema
+}) {
   const router = useRouter()
   const form = useForm<UserSchema>({
     resolver: zodResolver(userSchema),
     defaultValues: {
-      email: user.email || '',
-      password: '',
+      email: userData.email || '',
+      username: userData.username || '',
+      role: userData.role || '',
     },
   })
 
-  const { updateUser, isPending } = useUpdateUser()
+  const { updateUser, isPending, error } = useUpdateUser()
 
   const onSubmit = async (data: UserSchema) => {
     try {
-      await updateUser({ user: data })
+      await updateUser({
+        userId,
+        authData: {
+          email: data.email,
+          password: data.password!,
+        },
+        userData: {
+          email: data.email,
+          username: data.username,
+          role: data.role,
+        },
+      })
+      if (error instanceof Error) {
+        toast.error(error.message)
+      }
       toast.success('Perfil atualizado com sucesso!')
+      router.refresh()
     } catch (error) {
       toast.error(
-        error instanceof Error ? error.message : 'Erro ao atualizar perfil',
+        error instanceof Error ? error.message : 'Erro ao atualizar o perfil',
       )
     }
   }
@@ -52,7 +81,42 @@ export function ProfileForm({ user }: { user: UserSchema }) {
       </div>
 
       <div className='space-y-2'>
-        <Label htmlFor='password'>Nova senha</Label>
+        <Label htmlFor='username'>Nome de usuário</Label>
+        <Input
+          {...form.register('username')}
+          id='username'
+          type='text'
+          placeholder='••••••••'
+          className='py-0.5'
+        />
+        {form.formState.errors.username && (
+          <LabelError message={form.formState.errors.username.message!} />
+        )}
+      </div>
+
+      <div>
+        <Label>Nivel de acesso {userData.role}</Label>
+        <Select
+          onValueChange={value => form.setValue('role', value as any)}
+          value={form.watch('role')}
+        >
+          <SelectTrigger>
+            <SelectValue placeholder='Selecione um nivel de acesso' />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem key='admin' value='admin'>
+              Admin
+            </SelectItem>
+            <SelectItem key='user' value='user'>
+              User
+            </SelectItem>
+          </SelectContent>
+        </Select>
+        <LabelError message={form.formState.errors.role?.message} />
+      </div>
+
+      <div className='space-y-2'>
+        <Label htmlFor='password'>Senha</Label>
         <Input
           {...form.register('password')}
           id='password'
