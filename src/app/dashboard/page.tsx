@@ -17,7 +17,6 @@ type Event = {
   date: string
   address: string
   description: string
-  confirmed: boolean
 }
 
 const columns: ColumnDef<Event>[] = [
@@ -34,19 +33,10 @@ const columns: ColumnDef<Event>[] = [
     header: 'Local',
   },
   {
-    accessorKey: 'description',
-    header: 'Descrição',
-  },
-  {
     id: 'actions',
     header: 'Ações',
     cell: ({ row }) => {
-      return (
-        <EventActions
-          eventId={row.original.id}
-          isConfirmed={row.original.confirmed}
-        />
-      )
+      return <EventActions event={row.original} />
     },
   },
 ]

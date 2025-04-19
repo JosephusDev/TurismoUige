@@ -1,42 +1,47 @@
 'use client'
 
-import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import { ArrowLeft } from 'lucide-react'
 import { useCreateEvent } from '@/useCases/event/createEvent'
 import { toast } from 'sonner'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { eventSchema, type EventSchema } from '@/services/supabase/types/schema'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
+import type { ControllerRenderProps } from 'react-hook-form'
 
 export default function NovoEventoPage() {
   const router = useRouter()
   const { createEvent, isPending } = useCreateEvent()
-  const [formData, setFormData] = useState({
-    title: '',
-    date: '',
-    address: '',
-    description: '',
+
+  const form = useForm<EventSchema>({
+    resolver: zodResolver(eventSchema),
+    defaultValues: {
+      title: '',
+      date: '',
+      address: '',
+      description: '',
+    },
   })
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+  const onSubmit = async (data: EventSchema) => {
     try {
-      await createEvent(formData)
+      await createEvent(data)
       toast.success('Evento criado com sucesso!')
       router.push('/dashboard')
     } catch (error) {
       toast.error('Erro ao criar evento. Tente novamente.')
       console.error('Erro ao criar evento:', error)
     }
-  }
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: value,
-    }))
   }
 
   return (
@@ -55,70 +60,89 @@ export default function NovoEventoPage() {
           <h1 className='text-2xl font-bold'>Novo Evento</h1>
         </div>
 
-        <form onSubmit={handleSubmit} className='space-y-6'>
-          <div className='space-y-2'>
-            <Label htmlFor='title'>Nome do Evento</Label>
-            <Input
-              id='title'
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
+            <FormField
+              control={form.control}
               name='title'
-              value={formData.title}
-              onChange={handleChange}
-              required
-              disabled={isPending}
+              render={({
+                field,
+              }: { field: ControllerRenderProps<EventSchema, 'title'> }) => (
+                <FormItem>
+                  <FormLabel>Nome do Evento</FormLabel>
+                  <FormControl>
+                    <Input {...field} disabled={isPending} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-          </div>
 
-          <div className='space-y-2'>
-            <Label htmlFor='date'>Data</Label>
-            <Input
-              id='date'
+            <FormField
+              control={form.control}
               name='date'
-              type='date'
-              value={formData.date}
-              onChange={handleChange}
-              required
-              disabled={isPending}
+              render={({
+                field,
+              }: { field: ControllerRenderProps<EventSchema, 'date'> }) => (
+                <FormItem>
+                  <FormLabel>Data</FormLabel>
+                  <FormControl>
+                    <Input type='date' {...field} disabled={isPending} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-          </div>
 
-          <div className='space-y-2'>
-            <Label htmlFor='address'>Local</Label>
-            <Input
-              id='address'
+            <FormField
+              control={form.control}
               name='address'
-              value={formData.address}
-              onChange={handleChange}
-              required
-              disabled={isPending}
+              render={({
+                field,
+              }: { field: ControllerRenderProps<EventSchema, 'address'> }) => (
+                <FormItem>
+                  <FormLabel>Local</FormLabel>
+                  <FormControl>
+                    <Input {...field} disabled={isPending} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-          </div>
 
-          <div className='space-y-2'>
-            <Label htmlFor='description'>Descrição</Label>
-            <Input
-              id='description'
+            <FormField
+              control={form.control}
               name='description'
-              value={formData.description}
-              onChange={handleChange}
-              required
-              disabled={isPending}
+              render={({
+                field,
+              }: {
+                field: ControllerRenderProps<EventSchema, 'description'>
+              }) => (
+                <FormItem>
+                  <FormLabel>Descrição</FormLabel>
+                  <FormControl>
+                    <Input {...field} disabled={isPending} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-          </div>
 
-          <div className='flex justify-end space-x-4'>
-            <Button
-              type='button'
-              variant='outline'
-              onClick={() => router.back()}
-              disabled={isPending}
-            >
-              Cancelar
-            </Button>
-            <Button type='submit' disabled={isPending}>
-              {isPending ? 'Salvando...' : 'Salvar Evento'}
-            </Button>
-          </div>
-        </form>
+            <div className='flex justify-end space-x-4'>
+              <Button
+                type='button'
+                variant='outline'
+                onClick={() => router.back()}
+                disabled={isPending}
+              >
+                Cancelar
+              </Button>
+              <Button type='submit' disabled={isPending}>
+                {isPending ? 'Salvando...' : 'Salvar Evento'}
+              </Button>
+            </div>
+          </form>
+        </Form>
       </div>
     </div>
   )
