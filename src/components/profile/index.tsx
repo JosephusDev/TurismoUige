@@ -28,7 +28,6 @@ export function ProfileForm({ user }: { user: UserSchema }) {
     try {
       await updateUser({ user: data })
       toast.success('Perfil atualizado com sucesso!')
-      router.refresh()
     } catch (error) {
       toast.error(
         error instanceof Error ? error.message : 'Erro ao atualizar perfil',
