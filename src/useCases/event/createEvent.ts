@@ -1,9 +1,10 @@
 import { createClient } from '@/services/supabase/client'
-import { EventType } from '@/services/supabase/types'
-import { useMutation } from '@tanstack/react-query'
+import type { EventType } from '@/services/supabase/types'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 export function useCreateEvent() {
   const supabase = createClient()
+  const queryClient = useQueryClient()
 
   const {
     mutateAsync: createEvent,
@@ -22,11 +23,12 @@ export function useCreateEvent() {
       if (error) {
         throw new Error(error.message)
       }
-
       return data
     },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['events'] })
+    },
   })
-
   return {
     createEvent,
     isPending,

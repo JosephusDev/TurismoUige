@@ -27,3 +27,18 @@ export const formSchema = z.object({
 })
 
 export type FormSchema = z.infer<typeof formSchema>
+
+export const eventSchema = z.object({
+  title: z.string().min(1, 'O título é obrigatório'),
+  date: z.string().min(1, 'A data é obrigatória'),
+  address: z.string().min(1, 'O endereço é obrigatório'),
+  description: z.string().min(1, 'A descrição é obrigatória'),
+})
+
+export type EventSchema = {
+  id: string
+  title: string
+  date: string
+  address: string
+  description: string
+}
