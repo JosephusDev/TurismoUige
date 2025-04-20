@@ -54,7 +54,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className='w-full flex flex-col gap-4'>
-      <div className='flex justify-between items-center'>
+      <div className='flex justify-between items-center gap-2'>
         {showFilter && filterColumn && (
           <div>
             <Input
@@ -102,7 +102,7 @@ export function DataTable<TData, TValue>({
                   data-state={row.getIsSelected() && 'selected'}
                 >
                   {row.getVisibleCells().map(cell => (
-                    <TableCell key={cell.id}>
+                    <TableCell key={cell.id} className='whitespace-nowrap'>
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext(),

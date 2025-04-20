@@ -3,6 +3,7 @@ import { Montserrat, Poppins } from 'next/font/google'
 import './globals.css'
 import QueryProvider from './queryProvider'
 import { Toaster } from 'sonner'
+import { SidebarProvider } from '@/components/ui/sidebar'
 const poppinsSans = Poppins({
   variable: '--font-poppins',
   subsets: ['latin'],
@@ -23,7 +24,7 @@ export default function RootLayout({
     <html lang='pt' className={`${poppinsSans.variable}`}>
       <body className='font-[family-name:var(--font-poppins)]'>
         <QueryProvider>
-          {children}
+          <SidebarProvider>{children}</SidebarProvider>
           <Toaster />
         </QueryProvider>
       </body>

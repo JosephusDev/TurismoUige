@@ -19,7 +19,8 @@ import { LabelError } from '../ui/label-error'
 import { useLogin } from '@/useCases/auth'
 import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
-
+import { useState } from 'react'
+import { Loader2 } from 'lucide-react'
 export function LoginForm({
   className,
   ...props
@@ -29,9 +30,12 @@ export function LoginForm({
     resolver: zodResolver(authSchema),
   })
 
+  const [isLoading, setIsLoading] = useState(false)
+
   const onSubmit = async (data: AuthSchema) => {
     try {
-      const user = await useLogin(data)
+      setIsLoading(true)
+      const { user } = await useLogin(data)
       if (user) {
         form.reset()
         toast.success('Login realizado com sucesso')
@@ -39,16 +43,18 @@ export function LoginForm({
       }
     } catch (error) {
       toast.error('Erro ao fazer o login')
+    } finally {
+      setIsLoading(false)
     }
   }
 
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
-      <div className='flex top-0 left-0 w-full absolute px-2 sm:px-40 py-4 bg-transparent:bg-primary justify-between items-center'>
+      <div className='flex top-0 left-0 w-full absolute px-5 sm:px-40 py-4 bg-transparent:bg-primary justify-between items-center'>
         <h1 className='text-2xl font-bold'>Zaya Uíge</h1>
         <Link
           href={'/'}
-          className='rounded-full text-pink-500 bg-white px-6 py-1 border-pink-500 border-[1px] hover:bg-pink-500 hover:text-white transition-all duration-300 ease-in-out'
+          className='rounded-full text-primary bg-white px-6 py-1 border-primary border-[1px] hover:bg-primary hover:text-white transition-all duration-300 ease-in-out'
         >
           INÍCIO
         </Link>
@@ -71,6 +77,7 @@ export function LoginForm({
                     type='email'
                     placeholder='Digite seu email'
                     {...form.register('email', { required: true })}
+                    className='text-xs'
                   />
                   {form.formState.errors.email && (
                     <LabelError
@@ -85,6 +92,7 @@ export function LoginForm({
                     type='password'
                     placeholder='••••••••'
                     {...form.register('password', { required: true })}
+                    className='text-xs'
                   />
                   {form.formState.errors.password && (
                     <LabelError
@@ -94,9 +102,14 @@ export function LoginForm({
                 </div>
                 <Button
                   type='submit'
-                  className='w-full bg-pink-500 text-white rounded-full'
+                  className='w-full bg-primary text-white rounded-full'
+                  disabled={isLoading}
                 >
-                  Entrar
+                  {isLoading ? (
+                    <Loader2 className='w-4 h-4 animate-spin' />
+                  ) : (
+                    'Entrar'
+                  )}
                 </Button>
               </div>
             </div>

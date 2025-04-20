@@ -11,13 +11,6 @@ import { Loader2 } from 'lucide-react'
 import { LabelError } from '../ui/label-error'
 import { useUpdateUser } from '@/useCases/user/updateUser'
 import { UserSchema, userSchema } from '@/services/supabase/types/schema'
-import {
-  Select,
-  SelectContent,
-  SelectValue,
-  SelectTrigger,
-  SelectItem,
-} from '@radix-ui/react-select'
 
 export function ProfileForm({
   userId,
@@ -92,27 +85,6 @@ export function ProfileForm({
         {form.formState.errors.username && (
           <LabelError message={form.formState.errors.username.message!} />
         )}
-      </div>
-
-      <div>
-        <Label>Nivel de acesso {userData.role}</Label>
-        <Select
-          onValueChange={value => form.setValue('role', value as any)}
-          value={form.watch('role')}
-        >
-          <SelectTrigger>
-            <SelectValue placeholder='Selecione um nivel de acesso' />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem key='admin' value='admin'>
-              Admin
-            </SelectItem>
-            <SelectItem key='user' value='user'>
-              User
-            </SelectItem>
-          </SelectContent>
-        </Select>
-        <LabelError message={form.formState.errors.role?.message} />
       </div>
 
       <div className='space-y-2'>
