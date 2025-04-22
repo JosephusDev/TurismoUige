@@ -23,7 +23,7 @@ export default function EventsPage() {
         ) : (
           <DataTable
             columns={columns}
-            data={events?.data!}
+            data={events!}
             filterColumn='title'
             placeholder='Buscar eventos...'
             actionButton={

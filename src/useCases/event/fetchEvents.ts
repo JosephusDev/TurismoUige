@@ -14,7 +14,7 @@ export function useFetchEvents() {
     },
   })
   return {
-    data,
+    data: data?.data,
     isLoading,
     error,
   }

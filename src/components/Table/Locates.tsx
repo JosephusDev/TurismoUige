@@ -20,7 +20,7 @@ export default function TableLocates() {
           showFilter
           filterColumn='name'
           columns={columns}
-          data={data?.data!}
+          data={data!}
           actionButton={<AddLocate />}
         />
       )}

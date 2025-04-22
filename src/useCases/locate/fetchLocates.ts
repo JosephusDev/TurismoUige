@@ -16,7 +16,7 @@ export function fetchLocates() {
     },
   })
   return {
-    data,
+    data: data?.data,
     isLoading,
     error,
   }
@@ -42,7 +42,7 @@ export function fetchFilteredLocates(filter: FilterEnum, value: string) {
     },
   })
   return {
-    data,
+    data: data?.data,
     isLoading,
     error,
   }
@@ -57,7 +57,7 @@ export function fetchLocatesByGreatestAvgRate() {
     },
   })
   return {
-    data,
+    data: data?.data,
     isLoading,
     error,
   }

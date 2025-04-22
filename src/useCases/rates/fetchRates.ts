@@ -15,7 +15,7 @@ export function fetchRates() {
     },
   })
   return {
-    data,
+    data: data?.data,
     isLoading,
     error,
   }
@@ -34,7 +34,7 @@ export function fetchRatesByLocate(locateId: string) {
     },
   })
   return {
-    data,
+    data: data?.data,
     isLoading,
     error,
   }

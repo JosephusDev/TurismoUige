@@ -1,7 +1,7 @@
-'use server'
+'use client'
 import { Calendar, LogOut, MapPin, User } from 'lucide-react'
-import { createClient } from '@/services/supabase/server'
-import { redirect } from 'next/navigation'
+import { createClient } from '@/services/supabase/client'
+import { useRouter } from 'next/navigation'
 import {
   Sidebar,
   SidebarContent,
@@ -38,15 +38,15 @@ const items = [
   },
 ]
 
-export async function AppSidebar({ children }: { children: React.ReactNode }) {
-  const supabase = await createClient()
+export function AppSidebar({ children }: { children: React.ReactNode }) {
+  const router = useRouter()
+  const supabase = createClient()
 
   async function handleLogout() {
-    'use server'
-    const supabase = await createClient()
     await supabase.auth.signOut()
-    redirect('/')
+    router.push('/')
   }
+
   return (
     <Fragment>
       <Sidebar>
@@ -77,16 +77,14 @@ export async function AppSidebar({ children }: { children: React.ReactNode }) {
         <SidebarFooter>
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
-              <form action={handleLogout}>
-                <Button
-                  variant={'ghost'}
-                  className='w-full hover:text-primary transition-all duration-300'
-                  type='submit'
-                >
-                  <LogOut />
-                  <span>Terminar Sessão</span>
-                </Button>
-              </form>
+              <Button
+                variant={'ghost'}
+                className='w-full hover:text-primary transition-all duration-300'
+                onClick={handleLogout}
+              >
+                <LogOut />
+                <span>Terminar Sessão</span>
+              </Button>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarFooter>
