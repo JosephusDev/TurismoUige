@@ -7,5 +7,5 @@ interface LabelErrorProps {
 export function LabelError({ message }: LabelErrorProps) {
   if (!message) return null
 
-  return <p className='text-sm font-medium text-destructive'>{message}</p>
+  return <p className='text-sm font-medium text-destructive'>* {message}</p>
 }

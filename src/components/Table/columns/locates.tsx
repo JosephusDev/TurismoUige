@@ -84,7 +84,7 @@ export const columns: ColumnDef<LocateType>[] = [
       const loadImages = async () => {
         if (errorImages) toast.error('Erro ao carregar imagens')
         if (isSuccessImages) {
-          setImages(data?.data?.map(image => image.url)!)
+          setImages(data?.map(image => image.url)!)
           setIsLoading(isLoadingImages)
         }
       }

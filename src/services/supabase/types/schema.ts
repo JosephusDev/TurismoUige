@@ -46,11 +46,13 @@ export const userSchema = z.object({
 
 export type UserSchema = z.infer<typeof userSchema>
 export const eventSchema = z.object({
+  id: z.string().optional(),
   title: z.string().min(1, 'O título é obrigatório'),
   date: z.string().min(1, 'A data é obrigatória'),
   address: z.string().min(1, 'O endereço é obrigatório'),
   description: z.string().min(1, 'A descrição é obrigatória'),
 })
+
 
 export const rateSchema = z.object({
   value: z
@@ -79,3 +81,6 @@ export type EventSchema = {
   address: string
   description: string
 }
+
+export type EventSchema = z.infer<typeof eventSchema>
+

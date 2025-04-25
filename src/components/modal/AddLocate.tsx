@@ -85,7 +85,7 @@ export default function AddLocate() {
       <DialogTrigger asChild>
         <Button>
           <Plus className='h-4 w-4' />
-          Adicionar
+          <span className='hidden sm:block'>Adicionar</span>
         </Button>
       </DialogTrigger>
       <DialogContent className='max-w-xl'>

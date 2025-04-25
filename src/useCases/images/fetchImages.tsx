@@ -16,7 +16,7 @@ export function fetchImages(locateId: string) {
     },
   })
   return {
-    data,
+    data: data?.data,
     isLoading,
     error,
     isSuccess,
