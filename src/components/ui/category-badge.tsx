@@ -1,8 +1,6 @@
 import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
-import { Database } from '@/services/supabase/types/db'
-
-type Category = Database['public']['Enums']['category']
+import { Category } from '@/services/supabase/types'
 
 interface CategoryBadgeProps {
   category: Category
