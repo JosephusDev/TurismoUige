@@ -53,4 +53,34 @@ export const eventSchema = z.object({
   description: z.string().min(1, 'A descrição é obrigatória'),
 })
 
+
+export const rateSchema = z.object({
+  value: z
+    .number({
+      message: 'A nota é obrigatória',
+    })
+    .min(1, 'A nota é obrigatória'),
+  comment: z
+    .string({
+      message: 'O comentário é obrigatório',
+    })
+    .min(1, 'O comentário é obrigatório'),
+  locate_id: z
+    .string({
+      message: 'O id do local é obrigatório',
+    })
+    .min(1, 'O id do local é obrigatório'),
+})
+
+export type RateSchema = z.infer<typeof rateSchema>
+
+export type EventSchema = {
+  id: string
+  title: string
+  date: string
+  address: string
+  description: string
+}
+
 export type EventSchema = z.infer<typeof eventSchema>
+
