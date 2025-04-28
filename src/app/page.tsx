@@ -1,15 +1,13 @@
 'use client'
-import { Button } from '@/components/ui/button'
-import AddEvaluate from '@/components/modal/AddEvaluate'
-import { Coments } from '@/components/Coments'
-import { Locates, Events } from '@/components/sections'
+import { Locates, Events, WhyVisit, Comments } from '@/components/sections'
+
 export default function Page() {
   return (
     <div className='flex flex-col w-full'>
-      <AddEvaluate />
-      <Coments />
+      <WhyVisit />
       <Locates />
       <Events />
+      <Comments />
     </div>
   )
 }

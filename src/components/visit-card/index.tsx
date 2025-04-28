@@ -8,9 +8,9 @@ interface VisitCardProps {
 
 export function VisitCard({ title, description, icon }: VisitCardProps) {
   return (
-    <Card className='border-none shadow-none w-[90%] lg:w-[600px] max-w-[350px] flex flex-col h-full min-h-full items-center'>
+    <Card className='border-none shadow-none w-full flex flex-col h-full min-h-full items-center'>
       <CardHeader>
-        <div className='w-24 h-24 bg-purple-800 rounded-full flex justify-center items-center'>
+        <div className='w-20 h-20 bg-secondary rounded-full flex justify-center items-center'>
           {icon}
         </div>
       </CardHeader>

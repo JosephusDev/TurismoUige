@@ -52,15 +52,15 @@ export function CarouselComment({ comments }: CarouselCommentProps) {
   }
 
   return (
-    <Carousel setApi={setApi} className='max-w-[500px]'>
+    <Carousel setApi={setApi} className='max-w-[500px]' opts={{ loop: true }}>
       <CarouselContent>
         {comments?.map(comment => (
           <CarouselItem key={comment.id}>
-            <Card className='w-full h-full max-w-[500px] p-6 rounded-3xl border-none bg-muted'>
+            <Card className='w-full max-w-[500px] p-6 rounded-3xl border-none bg-muted'>
               <CardContent>
-                <div className='flex flex-row gap-4 justify-between mb-4'>
-                  <div className='flex items-center gap-1'>
-                    <MapPinCheckInside size={15} />
+                <div className='flex flex-col sm:flex-row gap-4 justify-between mb-4'>
+                  <div className='flex items-center gap-1 font-bold'>
+                    <MapPinCheckInside size={20} />
                     <p>{comment.locate.name}</p>
                   </div>
                   <div className='flex items-center gap-2'>
@@ -70,7 +70,7 @@ export function CarouselComment({ comments }: CarouselCommentProps) {
                         <Star
                           key={index}
                           size={16}
-                          className='text-yellow-500'
+                          className='fill-yellow-400 text-yellow-400'
                         />
                       ) : (
                         <Star key={index} size={16} />
@@ -88,7 +88,7 @@ export function CarouselComment({ comments }: CarouselCommentProps) {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <div className='flex items-center gap-2 justify-end mt-2'>
+      <div className='gap-2 justify-end mt-2 hidden md:flex'>
         <Button
           onClick={handlePrevious}
           variant='outline'

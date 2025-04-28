@@ -14,7 +14,13 @@ import { Textarea } from '../ui/textarea'
 import { useCreateRate } from '@/useCases/rates/createRate'
 import { useQueryClient } from '@tanstack/react-query'
 
-export default function AddEvaluate() {
+export default function AddEvaluate({
+  locate,
+  locateId,
+}: {
+  locate: string
+  locateId: string
+}) {
   const queryClient = useQueryClient()
   const { createRate, isPending } = useCreateRate()
 
@@ -23,7 +29,7 @@ export default function AddEvaluate() {
     defaultValues: {
       value: 0,
       comment: '',
-      locate_id: '7c8d70c5-5ad4-4b60-9aa0-254ba9334a52',
+      locate_id: locateId,
     },
   })
 
@@ -31,6 +37,9 @@ export default function AddEvaluate() {
     try {
       await createRate(data)
       await queryClient.invalidateQueries({ queryKey: ['rate'] })
+      await queryClient.invalidateQueries({
+        queryKey: ['locateByGreatestAvgRate'],
+      })
       toast.success('Avaliação enviada com sucesso!')
       form.reset()
     } catch (error) {
@@ -41,23 +50,23 @@ export default function AddEvaluate() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant='outline'>
+        <Button className='rounded-full p-0 w-8 h-8'>
           <Star className='h-4 w-4' />
         </Button>
       </DialogTrigger>
       <DialogContent className='max-w-xl'>
         <DialogHeader>
-          <DialogTitle>Avaliar Local</DialogTitle>
+          <DialogTitle>{locate}</DialogTitle>
         </DialogHeader>
         <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
-          <div className='flex flex-row gap-2 justify-around'>
+          <div className='flex flex-row gap-8 justify-center mt-4'>
             {Array.from({ length: 5 }).map((_, index) =>
               index < form.watch('value') ? (
                 <Star
                   onClick={() => form.setValue('value', index + 1)}
                   key={index}
                   size={32}
-                  className='text-yellow-500 cursor-pointer'
+                  className='fill-yellow-400 text-yellow-400 cursor-pointer'
                 />
               ) : (
                 <Star
@@ -71,9 +80,9 @@ export default function AddEvaluate() {
           </div>
           <LabelError message={form.formState.errors.value?.message} />
           <div>
-            <Label>Descrição</Label>
+            <Label>Comentário</Label>
             <Textarea
-              placeholder='Descrição do local'
+              placeholder='Deixe um comentário sobre o local'
               rows={5}
               className='resize-none'
               {...form.register('comment')}

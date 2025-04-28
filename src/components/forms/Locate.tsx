@@ -17,7 +17,7 @@ import {
 } from '../ui/select'
 import { toast } from 'sonner'
 import { useQueryClient } from '@tanstack/react-query'
-import { ImageUpload } from '../UploadFiles'
+import { ImageUpload } from '../upload-files'
 import { useState } from 'react'
 import { Textarea } from '../ui/textarea'
 
