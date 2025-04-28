@@ -4,6 +4,7 @@ import './globals.css'
 import QueryProvider from './queryProvider'
 import { Toaster } from 'sonner'
 import { SidebarProvider } from '@/components/ui/sidebar'
+import ProgressProviderComponent from '@/components/progress-provider'
 const poppinsSans = Poppins({
   variable: '--font-poppins',
   subsets: ['latin'],
@@ -23,10 +24,12 @@ export default function RootLayout({
   return (
     <html lang='pt' className={`${poppinsSans.variable}`}>
       <body className='font-[family-name:var(--font-poppins)]'>
-        <QueryProvider>
-          <SidebarProvider>{children}</SidebarProvider>
-          <Toaster />
-        </QueryProvider>
+        <ProgressProviderComponent>
+          <QueryProvider>
+            <SidebarProvider>{children}</SidebarProvider>
+            <Toaster />
+          </QueryProvider>
+        </ProgressProviderComponent>
       </body>
     </html>
   )
