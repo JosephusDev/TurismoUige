@@ -1,10 +1,10 @@
-import { Button } from '@/components/ui/button'
+import { Locates, Events } from '@/components/sections'
 
 export default function Page() {
   return (
-    <div>
-      <h1 className='text-xl font-medium'>Hello World</h1>
-      <Button>Click me</Button>
+    <div className='flex flex-col w-full'>
+      <Locates />
+      <Events />
     </div>
   )
 }

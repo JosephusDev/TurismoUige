@@ -1,12 +1,15 @@
 'use client'
-import { DataTable } from '.'
-import AddLocate from '../modal/AddLocate'
-import { columns } from './columns/locates'
+import { Button } from '../ui/button'
 import { fetchLocates } from '@/useCases/locate'
-import { TableSkeleton } from '../skeletons/TableLocatesSkeleton'
+import { TableSkeleton } from '../skeletons/TableSkeleton'
+import { useRouter } from 'next/navigation'
+import { Plus } from 'lucide-react'
+import { DataTable } from '.'
+import { columns } from './columns/locates'
 
-export default function TableLocates() {
+export function TableLocates() {
   const { data, isLoading } = fetchLocates()
+  const router = useRouter()
 
   return (
     <div className='w-full'>
@@ -21,7 +24,12 @@ export default function TableLocates() {
           filterColumn='name'
           columns={columns}
           data={data!}
-          actionButton={<AddLocate />}
+          actionButton={
+            <Button onClick={() => router.push('/admin/locais/novo')}>
+              <Plus className='h-4 w-4' />
+              <span className='hidden sm:block'>Adicionar</span>
+            </Button>
+          }
         />
       )}
     </div>

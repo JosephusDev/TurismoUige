@@ -20,7 +20,7 @@ import { useLogin } from '@/useCases/auth'
 import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { Loader2 } from 'lucide-react'
+import { Home, Loader2 } from 'lucide-react'
 export function LoginForm({
   className,
   ...props
@@ -51,12 +51,8 @@ export function LoginForm({
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
       <div className='flex top-0 left-0 w-full absolute px-5 sm:px-40 py-4 bg-transparent:bg-primary justify-between items-center'>
-        <h1 className='text-2xl font-bold'>Zaya Uíge</h1>
-        <Link
-          href={'/'}
-          className='rounded-full text-primary bg-white px-6 py-1 border-primary border-[1px] hover:bg-primary hover:text-white transition-all duration-300 ease-in-out'
-        >
-          INÍCIO
+        <Link href={'/'}>
+          <h1 className='text-2xl font-bold'>Zaya Uíge</h1>
         </Link>
       </div>
       <Card>

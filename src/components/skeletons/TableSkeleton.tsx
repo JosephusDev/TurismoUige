@@ -8,6 +8,7 @@ export function TableSkeleton() {
         viewBox='0 0 1200 400'
         backgroundColor='#f3f3f3'
         foregroundColor='#dddddd'
+        uniqueKey='table-skeleton'
       >
         {/* Input de pesquisa */}
         <rect x='0' y='0' rx='8' ry='8' width='200' height='20' />

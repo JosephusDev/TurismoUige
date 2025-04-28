@@ -153,28 +153,42 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      get_locates_by_greatest_rate: {
-        Args: Record<PropertyKey, never>
+      get_locate_details: {
+        Args: { _locate_id: string }
         Returns: {
           id: string
           name: string
           description: string
-          category: Database["public"]["Enums"]["category"]
+          category: string
           address: string
-          image_url: string
           created_at: string
           average_rating: number
+          total_rates: number
         }[]
       }
-      get_locates_by_rates: {
+      get_locates_by_greatest_rate: {
+        Args: Record<PropertyKey, never> | { locate_id: string }
+        Returns: {
+          id: string
+          name: string
+          description: string
+          category: string
+          address: string
+          url: string
+          created_at: string
+          average_rating: number
+          total_rates: number
+        }[]
+      }
+      get_locates_by_rate: {
         Args: { rate_arg: number }
         Returns: {
           id: string
           name: string
           description: string
-          category: Database["public"]["Enums"]["category"]
+          category: string
           address: string
-          image_url: string
+          url: string
           created_at: string
         }[]
       }

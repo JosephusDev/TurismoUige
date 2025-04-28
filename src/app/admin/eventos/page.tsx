@@ -1,16 +1,16 @@
 'use client'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
-import { DataTable } from '@/components/Table'
+import { DataTable } from '@/components/table'
 import { Plus } from 'lucide-react'
-import { useFetchEvents } from '@/useCases/event'
+import { fetchEvents } from '@/useCases/event'
 import { AppSidebar } from '@/components/sidebar'
-import { TableSkeleton } from '@/components/skeletons/TableLocatesSkeleton'
-import { columns } from '@/components/Table/columns/events'
+import { TableSkeleton } from '@/components/skeletons/TableSkeleton'
+import { columns } from '@/components/table/columns/events'
 
 export default function EventsPage() {
   const router = useRouter()
-  const { data: events, isLoading } = useFetchEvents()
+  const { data: events, isLoading } = fetchEvents()
 
   return (
     <AppSidebar>

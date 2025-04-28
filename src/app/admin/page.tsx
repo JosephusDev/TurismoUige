@@ -1,5 +1,5 @@
-import TableLocates from '@/components/Table/Locates'
 import { AppSidebar } from '@/components/sidebar'
+import { TableLocates } from '@/components/table/locates'
 export default async function Page() {
   return (
     <AppSidebar>
