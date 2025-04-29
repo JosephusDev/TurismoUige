@@ -13,7 +13,9 @@ import {
   type CarouselApi,
 } from '../ui/carousel'
 import { Button } from '../ui/button'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+
+import Autoplay from 'embla-carousel-autoplay'
 
 interface CarouselCommentProps {
   comments: {
@@ -32,6 +34,12 @@ interface CarouselCommentProps {
 export function CarouselComment({ comments }: CarouselCommentProps) {
   const [api, setApi] = useState<CarouselApi>()
   const [current, setCurrent] = useState(0)
+  const plugin = useRef(
+    Autoplay({
+      delay: 2000,
+      stopOnInteraction: true,
+    }),
+  )
 
   useEffect(() => {
     if (!api) {
@@ -52,7 +60,16 @@ export function CarouselComment({ comments }: CarouselCommentProps) {
   }
 
   return (
-    <Carousel setApi={setApi} className='max-w-[500px]'>
+    <Carousel
+      setApi={setApi}
+      className='max-w-[500px]'
+      plugins={[plugin.current]}
+      onMouseEnter={plugin.current.stop}
+      onMouseLeave={plugin.current.reset}
+      opts={{
+        loop: true,
+      }}
+    >
       <CarouselContent>
         {comments?.map(comment => (
           <CarouselItem key={comment.id}>
@@ -88,7 +105,7 @@ export function CarouselComment({ comments }: CarouselCommentProps) {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <div className='flex items-center gap-2 justify-end mt-2'>
+      <div className='flex items-center gap-2 justify-end'>
         <Button
           onClick={handlePrevious}
           variant='outline'
