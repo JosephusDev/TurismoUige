@@ -38,12 +38,12 @@ export function WhyVisit() {
         />
         <VisitCard
           icon={<UserPlus className='text-white' size={44} />}
-          title='Múltiplos Destinos'
+          title='Gastronomia Local'
           description='Descubra os sabores da cidade com uma seleção de restaurantes tradicionais e modernos. Experimente pratos típicos recomendados por moradores e leia avaliações reais para encontrar os melhores lugares para comer.'
         />
         <VisitCard
           icon={<ShieldCheck className='text-white' size={44} />}
-          title='Múltiplos Destinos'
+          title='Cultura & Eventos'
           description='Mergulhe na cultura local com shows, feiras e festivais imperdíveis. Visite museus e exposições em destaque e acompanhe a agenda atualizada dos melhores eventos da cidade.'
         />
       </div>
