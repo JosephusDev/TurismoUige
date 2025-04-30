@@ -9,13 +9,24 @@ export function fetchRates() {
     queryFn: async () => {
       const { data, error } = await supabase
         .from('rate')
-        .select('*')
+        .select(`
+          comment,
+          created_at,
+          id,
+          locate_id,
+          value,
+          locate:locate_id (
+            id,
+            name
+          )
+        `)
         .order('created_at', { ascending: false })
       return { data, error }
     },
   })
+  console.log('DATA ', data)
   return {
-    data,
+    data: data?.data,
     isLoading,
     error,
   }
@@ -34,7 +45,7 @@ export function fetchRatesByLocate(locateId: string) {
     },
   })
   return {
-    data,
+    data: data?.data,
     isLoading,
     error,
   }

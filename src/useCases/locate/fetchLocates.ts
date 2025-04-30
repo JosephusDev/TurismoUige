@@ -16,12 +16,28 @@ export function fetchLocates() {
     },
   })
   return {
-    data,
+    data: data?.data,
     isLoading,
     error,
   }
 }
 
+export function fetchLocateById(id: string) {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['locateById', id],
+    queryFn: async () => {
+      const { data, error } = await supabase.rpc('get_locate_details', {
+        _locate_id: id,
+      })
+      return { data, error }
+    },
+  })
+  return {
+    data: data?.data?.[0],
+    isLoading,
+    error,
+  }
+}
 export function fetchFilteredLocates(filter: FilterEnum, value: string) {
   const { data, isLoading, error } = useQuery({
     queryKey: ['filteredLocates'],
@@ -35,14 +51,14 @@ export function fetchFilteredLocates(filter: FilterEnum, value: string) {
         return { data, error }
       } else {
         const { data, error } = await supabase
-          .rpc('get_locates_by_rates', { rate_arg: Number(value) })
+          .rpc('get_locates_by_rate', { rate_arg: Number(value) })
           .order('name')
         return { data, error }
       }
     },
   })
   return {
-    data,
+    data: data?.data,
     isLoading,
     error,
   }
@@ -57,7 +73,7 @@ export function fetchLocatesByGreatestAvgRate() {
     },
   })
   return {
-    data,
+    data: data?.data,
     isLoading,
     error,
   }

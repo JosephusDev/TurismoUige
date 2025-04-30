@@ -1,23 +1,37 @@
 'use client'
-import { DataTable } from '.'
-import AddLocate from '../modal/AddLocate'
-import { columns } from './columns/locates'
+import { Button } from '../ui/button'
 import { fetchLocates } from '@/useCases/locate'
-import { Loader2 } from 'lucide-react'
+import { TableSkeleton } from '../skeletons/TableSkeleton'
+import { useRouter } from 'next/navigation'
+import { Plus } from 'lucide-react'
+import { DataTable } from '.'
+import { columns } from './columns/locates'
 
-export default function TableLocates() {
+export function TableLocates() {
   const { data, isLoading } = fetchLocates()
-  if (isLoading)
-    return <Loader2 size={30} className='animate-spin text-primary' />
+  const router = useRouter()
+
   return (
     <div className='w-full'>
-      <DataTable
-        showFilter
-        filterColumn='name'
-        columns={columns}
-        data={data?.data!}
-        actionButton={<AddLocate />}
-      />
+      <div className='flex items-center justify-between'>
+        <h1 className='text-2xl font-bold mb-4'>Locais</h1>
+      </div>
+      {isLoading ? (
+        <TableSkeleton />
+      ) : (
+        <DataTable
+          showFilter
+          filterColumn='name'
+          columns={columns}
+          data={data!}
+          actionButton={
+            <Button onClick={() => router.push('/admin/locais/novo')}>
+              <Plus className='h-4 w-4' />
+              <span className='hidden sm:block'>Adicionar</span>
+            </Button>
+          }
+        />
+      )}
     </div>
   )
 }
