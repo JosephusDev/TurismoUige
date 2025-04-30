@@ -1,23 +1,30 @@
-'use client'
 import { HearderContent } from '@/components/headerContent'
+import Map from '@/components/Map'
 import { Navbar } from '@/components/navbar'
-import Footer from '@/components/ui/footer'
-import { Locates, Events, WhyVisit, Comments } from '@/components/sections'
-
+import {
+  Locates,
+  Events,
+  WhyVisit,
+  Comments,
+  Footer,
+} from '@/components/sections'
 export default function Page() {
   return (
-    <div className='flex flex-col w-full'>
-      <header className='relative bg-cover bg-center h-[400px]'>
-        <div className='relative z-10 flex flex-col items-center justify-center text-center text-white h-full'>
+    <div className='flex flex-col w-full h-full'>
+      <header className='relative bg-cover bg-center'>
+        <div className='relative z-10 flex flex-col items-center justify-center text-center h-full'>
           <Navbar />
           <HearderContent />
         </div>
       </header>
-      <WhyVisit />
-      <Locates />
-      <Events />
-      <Comments />
-      <div className='relative z-10 flex flex-col items-center justify-center text-center text-white h-full'>
+      <main className='relative z-0'>
+        <WhyVisit />
+        <Locates />
+        <Events />
+        <Map />
+        <Comments />
+      </main>
+      <div className='relative flex flex-col items-center justify-center text-center h-full'>
         <Footer />
       </div>
     </div>

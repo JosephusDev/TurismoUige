@@ -18,7 +18,7 @@ export function Comments() {
   const comments: RateWithLocate[] = (data as RateWithLocate[]) ?? []
 
   return (
-    <div className='p-6 md:px-[10%] flex flex-col md:flex-row justify-between gap-4'>
+    <div className='p-6 md:px-[10%] flex flex-col md:flex-row justify-between gap-4 mt-10'>
       <div className='flex flex-col gap-4 max-w-full md:max-w-[45%]'>
         <h1 className='text-xl lg:text-2xl font-bold'>
           Recomendados por mais de {comments.length} utilizadores!

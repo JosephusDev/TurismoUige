@@ -15,13 +15,12 @@ import { Menu, Search } from 'lucide-react'
 export function Navbar() {
   return (
     <>
-      <header className='w-full fixed top-0 left-0 z-50 bg-white/80 backdrop-blur-md shadow-sm'>
+      <header className='w-full fixed top-0 left-0 z-50 bg-white backdrop-blur-md shadow-sm'>
         <div className='container mx-auto flex items-center justify-between py-4 px-6'>
           {/* Logo */}
           <Link
             href='/'
-            className='text-3xl text-secundary font-extrabold font-serif tracking-wide'
-            style={{ color: 'black' }}
+            className='text-2xl text-secundary font-extrabold tracking-wide'
           >
             ZayaUige
           </Link>
@@ -32,45 +31,29 @@ export function Navbar() {
               <NavigationMenuList className='flex space-x-8'>
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild>
-                    <Link
-                      href='/'
-                      className='text-secundary'
-                      style={{ color: 'black' }}
-                    >
-                      INICIO
+                    <Link href='/' className='text-secundary'>
+                      Inicio
                     </Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild>
-                    <Link
-                      href='/explorar'
-                      className='text-secundary'
-                      style={{ color: 'black' }}
-                    >
-                      Explorar
+                    <Link href='#locais' className='text-secundary'>
+                      Locais
                     </Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild>
-                    <Link
-                      href='/sobre'
-                      className='text-secundary'
-                      style={{ color: 'black' }}
-                    >
-                      SOBRE
+                    <Link href='#eventos' className='text-secundary'>
+                      Eventos
                     </Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild>
-                    <Link
-                      href='/contactos'
-                      className='text-secundary'
-                      style={{ color: 'black' }}
-                    >
-                      CONTACTOS
+                    <Link href='#contactos' className='text-secundary'>
+                      Contactos
                     </Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
@@ -79,14 +62,10 @@ export function Navbar() {
           </div>
 
           {/* Mobile Menu */}
-          <div className='flex md:hidden items-center gap-4'>
+          <div className='flex md:hidden gap-4'>
             <Sheet>
               <SheetTrigger asChild>
-                <Button
-                  variant='destructive'
-                  size='icon'
-                  className='h-9 w-9 p-0'
-                >
+                <Button variant='ghost' size='icon' className='h-9 w-9 p-0'>
                   <Menu className='h-5 w-5' />
                 </Button>
               </SheetTrigger>
@@ -94,25 +73,25 @@ export function Navbar() {
                 <div className='flex flex-col gap-6'>
                   {/* Links Mobile */}
                   <NavigationMenu>
-                    <NavigationMenuList className='flex flex-col space-y-4'>
+                    <NavigationMenuList className='flex flex-col items-start space-y-4'>
                       <NavigationMenuItem>
                         <NavigationMenuLink asChild>
-                          <Link href='/'>INICIO</Link>
+                          <Link href='/'>Inicio</Link>
                         </NavigationMenuLink>
                       </NavigationMenuItem>
                       <NavigationMenuItem>
                         <NavigationMenuLink asChild>
-                          <Link href='/explorar'>Explorar</Link>
+                          <Link href='#locais'>Locais</Link>
                         </NavigationMenuLink>
                       </NavigationMenuItem>
                       <NavigationMenuItem>
                         <NavigationMenuLink asChild>
-                          <Link href='/sobre'>SOBRE</Link>
+                          <Link href='#eventos'>Eventos</Link>
                         </NavigationMenuLink>
                       </NavigationMenuItem>
                       <NavigationMenuItem>
                         <NavigationMenuLink asChild>
-                          <Link href='/contactos'>CONTACTOS</Link>
+                          <Link href='#contactos'>Contactos</Link>
                         </NavigationMenuLink>
                       </NavigationMenuItem>
                     </NavigationMenuList>
@@ -121,8 +100,8 @@ export function Navbar() {
                   <div className='flex flex-col gap-4'>
                     <Input
                       type='text'
-                      placeholder='Pesquise aqui...'
-                      className='w-full border-gray-300 focus:border-black focus:ring-0'
+                      placeholder='Digite o que procura...'
+                      className='w-full border-gray-300 focus:border-black focus:ring-0 rounded-lg'
                     />
                     <Button
                       variant='default'
@@ -144,7 +123,7 @@ export function Navbar() {
         <div className='container mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-4'>
           <Input
             type='text'
-            placeholder='Pesquise aqui...'
+            placeholder='Digite o que procura...'
             className='w-full md:w-1/2 border-gray-300 focus:border-black focus:ring-0 rounded-lg'
           />
           <Button

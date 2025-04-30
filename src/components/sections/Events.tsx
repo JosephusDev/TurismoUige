@@ -86,7 +86,10 @@ export function Events() {
   if (!events) return null
 
   return (
-    <div className='m-4 md:m-4 flex flex-col items-center w-full max-w-full overflow-hidden relative'>
+    <div
+      id='eventos'
+      className='m-4 md:m-4 flex flex-col items-center w-full max-w-full overflow-hidden relative'
+    >
       <div className='mb-8 text-center w-full'>
         <h1 className='text-lg sm:text-2xl font-bold'>Eventos em Destaque</h1>
         <p className='text-xs sm:text-sm mt-2 text-muted-foreground'>

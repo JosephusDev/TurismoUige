@@ -1,10 +1,12 @@
 import { Facebook, Twitter, Music2 } from 'lucide-react'
-import { Card, CardContent } from '@/components/ui/card'
 import Link from 'next/link'
 
-export default function Footer() {
+export function Footer() {
   return (
-    <footer className='bg-gray-100 py-10 border-t text-black'>
+    <footer
+      id='contactos'
+      className='bg-gray-100 py-10 w-full border-t text-black'
+    >
       <div className='max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 text-justify'>
         <div>
           <h2 className='text-lg font-bold'>ZayaUíge</h2>
@@ -16,21 +18,21 @@ export default function Footer() {
             <a
               href='#'
               aria-label='Facebook'
-              className='bg-black rounded-full p-2 text-white'
+              className='bg-primary rounded-full p-2 text-white'
             >
               <Facebook className='w-4 h-4' />
             </a>
             <a
               href='#'
               aria-label='TikTok'
-              className='bg-black rounded-full p-2 text-white'
+              className='bg-primary rounded-full p-2 text-white'
             >
               <Music2 className='w-4 h-4' />
             </a>
             <a
               href='#'
               aria-label='Twitter'
-              className='bg-black rounded-full p-2 text-white'
+              className='bg-primary rounded-full p-2 text-white'
             >
               <Twitter className='w-4 h-4' />
             </a>

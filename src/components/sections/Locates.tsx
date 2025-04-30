@@ -87,7 +87,10 @@ export function Locates() {
   if (!locates) return null
 
   return (
-    <div className='m-4 md:m-4 flex flex-col items-center w-full max-w-full overflow-hidden relative'>
+    <div
+      id='locais'
+      className='m-4 md:m-4 flex flex-col items-center w-full max-w-full overflow-hidden relative'
+    >
       <div className='mb-8 text-center w-full'>
         <h1 className='text-lg sm:text-2xl font-bold'>
           Locais Turísticos em Destaque
