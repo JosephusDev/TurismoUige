@@ -1,7 +1,7 @@
 import { Calendar, MapPin } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
-import { Card, CardContent } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { formatDate } from '@/utils'
 import {
   Dialog,
@@ -34,24 +34,22 @@ export function EventCard({
       <DialogTrigger asChild>
         <Card
           className={cn(
-            'group relative h-[150px] w-full overflow-hidden transition-all cursor-pointer',
+            'group relative w-full overflow-hidden transition-all cursor-pointer',
             isBlurred && 'opacity-50',
             className,
           )}
         >
+          <CardHeader className='px-4 py-8 bg-muted rounded-b-xl'>
+            <CardTitle className='text-center'>{title}</CardTitle>
+          </CardHeader>
           <CardContent className='p-4 flex flex-col gap-5'>
             <div className='flex flex-col gap-4'>
-              <h3 className='text-primary font-semibold text-base max-w-[150px] truncate'>
-                {title}
-              </h3>
-            </div>
-            <div className='flex flex-col gap-4'>
               <p className='flex items-center gap-1 line-clamp-2 text-sm'>
-                <MapPin size={16} />
+                <MapPin className='text-primary' size={16} />
                 {address}
               </p>
               <div className='flex items-center gap-2'>
-                <Calendar className='h-4 w-4' />
+                <Calendar className='text-primary' size={16} />
                 <span className='text-sm font-medium'>
                   {formatDate(new Date(date))}
                 </span>

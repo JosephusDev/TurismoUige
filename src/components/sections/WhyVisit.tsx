@@ -37,13 +37,13 @@ export function WhyVisit() {
           description='Explore vários lugares em uma única viagem! Combinando restaurantes, lojas e pontos turísticos, receba sugestões automáticas de rotas otimizadas e compartilhe seus itinerários com amigos.'
         />
         <VisitCard
-          icon={<UserPlus className='text-white' size={32} />}
-          title='Múltiplos Destinos'
+          icon={<UserPlus className='text-white' size={44} />}
+          title='Gastronomia Local'
           description='Descubra os sabores da cidade com uma seleção de restaurantes tradicionais e modernos. Experimente pratos típicos recomendados por moradores e leia avaliações reais para encontrar os melhores lugares para comer.'
         />
         <VisitCard
-          icon={<ShieldCheck className='text-white' size={32} />}
-          title='Múltiplos Destinos'
+          icon={<ShieldCheck className='text-white' size={44} />}
+          title='Cultura & Eventos'
           description='Mergulhe na cultura local com shows, feiras e festivais imperdíveis. Visite museus e exposições em destaque e acompanhe a agenda atualizada dos melhores eventos da cidade.'
         />
       </div>
